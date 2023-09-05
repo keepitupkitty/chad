@@ -40,13 +40,14 @@
 )]
 #![feature(thread_local)]
 
-extern crate alloc;
+extern crate alloc as allocator;
 extern crate cbitset;
+extern crate wee_alloc;
 
+mod alloc;
 mod api;
 #[macro_use]
 mod macros;
-mod malloc;
 mod types;
 
 // Export types
@@ -54,6 +55,6 @@ pub use types::*;
 
 // C library
 pub mod arch;
-pub mod init;
+pub mod start;
 pub mod std;
 pub mod support;

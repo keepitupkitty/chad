@@ -49,6 +49,7 @@ extern "C" {
   extern _Thread_local int __oumalibc_errno;
   extern int __oumalibc_current_sigrtmax();
   extern int __oumalibc_current_sigrtmin();
+  void ouma_free(void *ptr);
 }
 
 TEST(memccpy, null) {
@@ -712,17 +713,17 @@ TEST(strsignal, example) {
 TEST(strndup, null) {
   char *copy = ouma_strndup(NULL, 0);
   ASSERT_STREQ("", copy);
-  free(copy);
+  ouma_free(copy);
 }
 
 TEST(strndup, hello) {
   char *copy = ouma_strndup("Hello, world", 5);
   ASSERT_STREQ("Hello", copy);
-  free(copy);
+  ouma_free(copy);
 }
 
 TEST(strdup, hello) {
   char *copy = ouma_strdup("Hello");
   ASSERT_STREQ("Hello", copy);
-  free(copy);
+  ouma_free(copy);
 }

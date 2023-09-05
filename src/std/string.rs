@@ -4,9 +4,8 @@ use {
     c_int,
     c_uchar,
     locale_t,
-    malloc,
     size_t,
-    std::{errno, signal},
+    std::{errno, signal, stdlib},
     support::{string, string::string_length, stringstream::StringStream}
   },
   cbitset::BitSet256,
@@ -575,7 +574,7 @@ pub extern "C" fn ouma_strndup(
   sz: size_t
 ) -> *mut c_char {
   let len = ouma_strnlen(s, sz);
-  let c: *mut c_char = unsafe { malloc::malloc(len + 1).cast::<c_char>() };
+  let c: *mut c_char = stdlib::ouma_malloc(len + 1).cast::<c_char>();
   if c.is_null() {
     return ptr::null_mut();
   }
@@ -589,7 +588,7 @@ pub extern "C" fn ouma_strndup(
 #[no_mangle]
 pub extern "C" fn ouma_strdup(s: *const c_char) -> *mut c_char {
   let len = string_length(s) + 1;
-  let c: *mut c_char = unsafe { malloc::malloc(len).cast::<c_char>() };
+  let c: *mut c_char = stdlib::ouma_malloc(len).cast::<c_char>();
   if c.is_null() {
     return ptr::null_mut();
   }

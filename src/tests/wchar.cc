@@ -65,6 +65,7 @@ extern "C" {
 */
 
   extern _Thread_local int __oumalibc_errno;
+  void ouma_free(void *ptr);
 }
 
 TEST(wmemchr, null) {
@@ -291,7 +292,7 @@ TEST(wcstok, example) {
 TEST(wcsdup, hello) {
   wchar_t *copy = ouma_wcsdup(L"Hello");
   ASSERT_STREQ(L"Hello", copy);
-  free(copy);
+  ouma_free(copy);
 }
 
 TEST(wctob, example) {

@@ -4,7 +4,6 @@ use {
     c_int,
     char32_t,
     locale_t,
-    malloc,
     mbstate_t,
     size_t,
     std::{stdio, stdlib, string, uchar},
@@ -503,9 +502,8 @@ pub extern "C" fn ouma_wcstok(
 #[no_mangle]
 pub extern "C" fn ouma_wcsdup(s: *const wchar_t) -> *mut wchar_t {
   let len = wstring_length(s) + 1;
-  let c: *mut wchar_t = unsafe {
-    malloc::malloc(len * mem::size_of::<wchar_t>()).cast::<wchar_t>()
-  };
+  let c: *mut wchar_t =
+    stdlib::ouma_malloc(len * mem::size_of::<wchar_t>()).cast::<wchar_t>();
   if c.is_null() {
     return ptr::null_mut();
   }
