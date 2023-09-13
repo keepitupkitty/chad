@@ -12,6 +12,7 @@ extern "C" {
   void *ouma_malloc(size_t size);
   void *ouma_realloc(void *ptr, size_t size);
   int ouma_posix_memalign(void **memptr, size_t alignment, size_t size);
+  unsigned long ouma_strtoul(const char *src, char **endptr, int base);
 
   extern _Thread_local int __oumalibc_errno;
 }

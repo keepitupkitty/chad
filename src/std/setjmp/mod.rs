@@ -1,4 +1,4 @@
-use crate::c_int;
+use crate::{c_int, cfg_if};
 
 cfg_if! {
   if #[cfg(target_arch = "aarch64")] {

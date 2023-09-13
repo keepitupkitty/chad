@@ -21,6 +21,7 @@
   clippy::cast_lossless,
   clippy::cast_possible_wrap,
   clippy::items_after_statements,
+  clippy::unnecessary_cast,
 
   clippy::too_many_lines,
   clippy::unreadable_literal,
@@ -42,11 +43,10 @@
 
 extern crate alloc as allocator;
 extern crate cbitset;
-extern crate wee_alloc;
+extern crate num_traits;
 
 mod alloc;
 mod api;
-#[macro_use]
 mod macros;
 mod types;
 

@@ -28,7 +28,7 @@ pub extern "C" fn ouma_btowc(c: c_int) -> wint_t {
   let mut wc: wchar_t = 0;
   let status =
     unsafe { ouma_mbrtowc(&mut wc, core::ptr::addr_of!(buf), 1, &mut PRIV) };
-  if status == usize::max_value() || status == usize::max_value() - 1 {
+  if status == usize::MAX || status == usize::MAX - 1 {
     return WEOF;
   }
   wc as wint_t
@@ -660,7 +660,7 @@ extern "C" fn ouma_mbsrtowcs(
   len: size_t,
   ps: *mut mbstate_t
 ) -> size_t {
-  ouma_mbsnrtowcs(dst, src, size_t::max_value(), len, ps)
+  ouma_mbsnrtowcs(dst, src, size_t::MAX, len, ps)
 }
 
 #[no_mangle]
@@ -765,7 +765,7 @@ pub extern "C" fn ouma_wcsrtombs(
   len: size_t,
   ps: *mut mbstate_t
 ) -> size_t {
-  ouma_wcsnrtombs(dst, src, size_t::max_value(), len, ps)
+  ouma_wcsnrtombs(dst, src, size_t::MAX, len, ps)
 }
 
 #[no_mangle]

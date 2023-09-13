@@ -14,6 +14,6 @@ panic = "abort"
 panic = "abort"
 
 [dependencies]
-cbitset = "0.2.0"
+cbitset = "0.2"
+num-traits = { version = "0.2", default-features = false }
 syscalls = { version = "0.6", default-features = false }
-wee_alloc = { git = "https://github.com/keepitupkitty/wee_alloc", default-features = false }

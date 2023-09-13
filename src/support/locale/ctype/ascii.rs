@@ -27,7 +27,7 @@ fn mbtoc32(
     return -2;
   }
   let uc: c_uchar = unsafe { *s as c_uchar };
-  if uc > c_schar::max_value() as u8 {
+  if uc > c_schar::MAX as u8 {
     errno::set_errno(errno::EILSEQ);
     return -1;
   }
@@ -41,7 +41,7 @@ fn c32tomb(
   wc: char32_t,
   _: *mut mbstate_t
 ) -> ssize_t {
-  if wc > c_schar::max_value() as char32_t {
+  if wc > c_schar::MAX as char32_t {
     errno::set_errno(errno::EILSEQ);
     return -1;
   }

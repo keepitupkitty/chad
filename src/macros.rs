@@ -1,5 +1,6 @@
 // Copied from libc crate
 
+#[macro_export]
 macro_rules! cfg_if {
   ($(
     if #[cfg($($meta:meta),*)] { $($it:item)* }

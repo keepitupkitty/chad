@@ -18,7 +18,7 @@ fn isctype_l(
   wctype: wctype_t,
   locale: locale_t
 ) -> c_int {
-  if c < 0 || c > c_uchar::max_value() as c_int {
+  if c < 0 || c > c_uchar::MAX as c_int {
     return 0;
   }
 
@@ -38,7 +38,7 @@ fn totrans_l(
   wctrans: wctrans_t,
   locale: locale_t
 ) -> c_int {
-  if c < 0 || c > c_uchar::max_value() as c_int {
+  if c < 0 || c > c_uchar::MAX as c_int {
     return c;
   }
 
